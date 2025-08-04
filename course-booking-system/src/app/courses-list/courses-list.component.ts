@@ -26,7 +26,7 @@ export class CoursesListComponent implements OnInit {
     // Potentially do more here in the future
   }
 
-  onWishlistAdded(course: Course): void {
+  onWishlistAdded(course: Course) {
     console.log('Wishlist event triggered for:', course.title);
     this.wishlist.push(course);
   }
