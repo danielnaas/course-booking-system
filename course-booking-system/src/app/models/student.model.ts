@@ -1,8 +1,8 @@
 export interface Student {
     id: number;
     name: string;
-    email: string;
-    enrolledCourseIds: Array<number>;
+    email?: string;
+    enrolledCourseIds?: number[];
     phoneNumber?: number;
     registrationDate?: Date;
 
