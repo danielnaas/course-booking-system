@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseCardComponent } from '../course-card/course-card.component';
 import { Course } from '../models/course.model';
 import { CourseService } from '../services/course.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -14,22 +15,30 @@ export class CoursesListComponent implements OnInit {
   wishlist: Course[] = [];
   courses: Course[] = [];
 
-  constructor(private courseService: CourseService) {
+  constructor(private courseService: CourseService, private route: ActivatedRoute, private router: Router) {
 
   }
   ngOnInit(): void {
-    // this is important, this is where I subscribe to the observeable
-    this.courseService.getCourses().subscribe({
+    this.route.queryParamMap.subscribe(params => {
+        const desc = params.get('description');
+        console.log("FOUND description", desc);
+        this.loadCourses(desc);
+    });
+  }
+
+
+  loadCourses(description: string | null) {
+    this.courseService.getCourses(description).subscribe({
       next: (data: Course[]) => {
         this.courses = data;
+        console.log("FETCHED courses");
       },
       error: (err) => {
         console.error('Error fetching courses:', err);
       }
-    })
-    console.log("CoursesList initialized!")
+    });
   }
-
+  
   onCourseBooked(course: Course): void {
     console.log('Parent heard about booking:', course.title);
     // Potentially do more here in the future

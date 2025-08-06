@@ -30,7 +30,18 @@ function saveData(data) {
 // Get all courses
 app.get('/courses', (req, res) => {
     const data = loadData();
-    res.json(data.courses);
+    let courses = data.courses;
+
+    const descriptionFilter = req.query.description;
+    if (descriptionFilter) {
+        // filter the course description
+        // this is the sort of stuff I want to get better at.  This line says take a thing "c"
+        // and keep the parts of it that contain descriptionFilter
+        courses = courses.filter(c =>
+            c.description.toLowerCase().includes(descriptionFilter.toLowerCase())
+        );
+    }
+    res.json(courses);
 });
 
 // Get a course by ID

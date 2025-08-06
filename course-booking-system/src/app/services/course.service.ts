@@ -22,9 +22,14 @@ export class CourseService {
   constructor(private http: HttpClient) { }
 
   // GET all courses
-  getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(`${this.baseUrl}/courses`);
-  }
+  // adding description as an optional parameter
+  getCourses(description?: string | null): Observable<Course[]> {
+    let url = `${this.baseUrl}/courses`;
+    if (description) {
+      url += `?description=${description}`;
+    }
+    console.log("USING this URL", url);
+    return this.http.get<Course[]>(url);  }
 
   // GET a course by id
   getCourseById(id: number): Observable<Course> {
