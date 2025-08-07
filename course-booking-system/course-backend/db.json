@@ -27,6 +27,16 @@
       "date": "2025-05-05",
       "img": "rxjs-logo.png",
       "soldOut": false
+    },
+    {
+      "id": 1754590460864,
+      "title": "Angular for Librarians",
+      "description": "An Angular course for library software",
+      "price": 100,
+      "date": "2025-01-01",
+      "img": "angular-logo.png",
+      "onSale": false,
+      "soldOut": false
     }
   ],
   "students": [

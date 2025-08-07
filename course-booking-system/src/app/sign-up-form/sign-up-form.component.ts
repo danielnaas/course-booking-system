@@ -61,17 +61,7 @@ export class SignUpFormComponent implements OnInit {
       enrolledCourseIds: [this.signUpForm.value.enrolledCourseId]
     };
 
-    this.courseService.addStudent(newStudent).subscribe({
-      next: (student) => {
-        console.log('Student successfully signed up:', student);
-        this.submissionSuccess = true;
-        this.signUpForm.reset();
-      },
-      error: (err) => {
-        console.error('Error signing up student:', err);
-        this.submissionError = 'There was an error submitting your sign-up. Please try again.';
-      }
-    })
+    this.courseService.addStudent
   }
 }
 
